@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  server:
+    container_name: backend-server
+    restart: always
+    build: .
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - ${PORT}:${PORT}
+    env_file:
+      - .env
+    depends_on:
+      - database
+    command: ['npm', 'start']
+  database:
+    image: postgres
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: villa
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      TZ: "Asia/Bangkok"
+    ports:
+      - 5443:5432
+    volumes:
+      - database-data:/var/lib/postgresql/data
+
+volumes:
+  database-data: {}
