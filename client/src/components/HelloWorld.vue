@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>
-      HelloWorld
+      Component Home
     </h3>
   </div>
 </template>
